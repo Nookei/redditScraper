@@ -1,0 +1,8 @@
+com/ndh/masterthesis/redditScraper/adapter/dto/CommentDTO.class
+com/ndh/masterthesis/redditScraper/adapter/dto/PostDTO.class
+com/ndh/masterthesis/redditScraper/adapter/PostAdapter.class
+com/ndh/masterthesis/redditScraper/service/PostService.class
+com/ndh/masterthesis/redditScraper/Controller.class
+com/ndh/masterthesis/redditScraper/service/CommentService.class
+com/ndh/masterthesis/redditScraper/adapter/CommentAdapter.class
+com/ndh/masterthesis/redditScraper/RedditScraper.class

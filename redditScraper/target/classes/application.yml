@@ -1,0 +1,15 @@
+
+logging:
+  level:
+    root: INFO
+    com.ndh.masterthesis: DEBUG
+    org.springframework: INFO
+
+
+feign:
+    client:
+        config:
+            default:
+                connectTimeout: 5000
+                readTimeout: 5000
+                loggerLevel: BASIC
