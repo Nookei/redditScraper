@@ -1,4 +1,4 @@
-package com.ndh.masterthesis.redditScraper.adapter.dto;
+package com.ndh.masterthesis.redditScraper.adapter.dto.comment;
 
 
 import lombok.Getter;
@@ -13,7 +13,7 @@ public class CommentDTO {
     private String id;
     private String parent_id;
     private String link_id;
-    private String retrieved_utc;
+    private int created_utc;
 
     private String author;
     private String body;

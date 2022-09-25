@@ -1,4 +1,4 @@
-package com.ndh.masterthesis.redditScraper.adapter.dto;
+package com.ndh.masterthesis.redditScraper.adapter.dto.comment;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,11 +1,11 @@
 package com.ndh.masterthesis.redditScraper;
 
 
-import com.ndh.masterthesis.redditScraper.adapter.dto.PostDTO;
-import com.ndh.masterthesis.redditScraper.adapter.dto.PostJsonWrapDTO;
-import com.ndh.masterthesis.redditScraper.service.CommentService;
-import com.ndh.masterthesis.redditScraper.service.PostService;
-import com.ndh.masterthesis.redditScraper.service.bo.Comment;
+import com.ndh.masterthesis.redditScraper.service.comment.CommentService;
+import com.ndh.masterthesis.redditScraper.service.comment.bo.Comment;
+import com.ndh.masterthesis.redditScraper.service.export.CommentNestingService;
+import com.ndh.masterthesis.redditScraper.service.post.PostService;
+import com.ndh.masterthesis.redditScraper.service.post.bo.Post;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,28 +22,36 @@ public class Controller {
 
     private final CommentService commentService;
 
+    private final CommentNestingService commentNestingService;
+
     @GetMapping("/trigger")
     public void trigger() {
 
-        PostJsonWrapDTO postsBySubreddit = postService.getPostsBySubreddit();
+        List<Post> postsBySubreddit = postService.getPostsBySubreddit();
+
+        Post post = postsBySubreddit.get(0);
+        List<Comment> commentsForPost = commentService.getCommentsForPost(post.getId()); // catch feign exception because of too many requests
+        post.setComments(commentsForPost);
+        commentNestingService.nestCommentsForPost(post);
 
 
-        // TODO: clean up mapping
-        PostDTO post = postsBySubreddit.getData().stream().findFirst().get();
+        Post post1 = postsBySubreddit.get(1);
+        List<Comment> commentsForPost1 = commentService.getCommentsForPost(post1.getId()); // catch feign exception because of too many requests
+        post1.setComments(commentsForPost1);
+        commentNestingService.nestCommentsForPost(post1);
 
-        log.info("first post id = {}", post.getId());
+        Post post2 = postsBySubreddit.get(2);
+        List<Comment> commentsForPost2 = commentService.getCommentsForPost(post2.getId()); // catch feign exception because of too many requests
+        post2.setComments(commentsForPost2);
+        commentNestingService.nestCommentsForPost(post2);
+
+        Post post3 = postsBySubreddit.get(3);
+        List<Comment> commentsForPost3 = commentService.getCommentsForPost(post3.getId()); // catch feign exception because of too many requests
+        post3.setComments(commentsForPost3);
+        commentNestingService.nestCommentsForPost(post3);
 
 
-        List<Comment> commentsForPost = commentService.getCommentsForPost(post.getId());
-
-
-
-        log.info("post:"+ post.getSelftext());
-        log.info("post has {} comments",commentsForPost.size());
-
-        for (Comment comment: commentsForPost){
-            log.info("postID: {} comment: ",post.getId(),comment.getBody());
-        }
+        int i = 0;
 
     }
 

@@ -2,10 +2,9 @@ package com.ndh.masterthesis.redditScraper.adapter;
 
 
 import com.ndh.masterthesis.redditScraper.adapter.config.AdapterConfig;
-import com.ndh.masterthesis.redditScraper.adapter.dto.PostJsonWrapDTO;
+import com.ndh.masterthesis.redditScraper.adapter.dto.post.PostJsonWrapDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(url = "https://api.pushshift.io/", name = "PostAdapter", configuration = AdapterConfig.class)
 public interface PostAdapter {

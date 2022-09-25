@@ -8,7 +8,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author Martin Beyer
  *
  */
-
 @EnableFeignClients
 @SpringBootApplication
 public class RedditScraper {

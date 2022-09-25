@@ -1,9 +1,9 @@
 package com.ndh.masterthesis.redditScraper.adapter;
 
-import com.ndh.masterthesis.redditScraper.adapter.dto.CommentJsonWrapDTO;
+import com.ndh.masterthesis.redditScraper.adapter.dto.comment.CommentJsonWrapDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(url = "https://api.pushshift.io", name = "CommentAdapter")
 public interface CommentAdapter {
@@ -16,8 +16,10 @@ public interface CommentAdapter {
 
     String FULL_PATH = PATH + PATH_VARIABLES;
 
-    @GetMapping(path = PATH)
-    CommentJsonWrapDTO getCommentsByPostId(@PathVariable("link_id") String link_id);
+    @GetMapping(path = "/reddit/comment/search")
+    CommentJsonWrapDTO getCommentsByPostId(@RequestParam("link_id") String linkId,
+                                           @RequestParam("nest_level") int nestLevel,
+                                           @RequestParam("subreddit") String subreddit);
 
     //https://api.pushshift.io/reddit/comment/search?subreddit=drogen&nest_level=0&link_id=x7ante
 
